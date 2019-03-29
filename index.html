@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+</head>
+
+<body>
+	<!-- Header -->
+	<h1>Children's Bible Quizzing</h1>
+	<h2>Book of Acts</h2>
+	<hr>
+	
+	<!-- Set Up -->
+	<!--<p>Level</p>  radio buttons -->
+	<!--<p>How many questions?</p>  text box -->
+	<!-- <p>Timer</p> radio buttons -->
+	<!-- text box  <p>Length of Time</p> -->
+	<!-- Button -->  
+	
+	<!-- <hr> -->
+	
+	<form name="quizForm" id="quizForm">
+	
+	<script language="javascript">
+		//Name Variable and Set Variable as Array
+		var questionArray = new Array();
+		
+		//Enter Trivia Question #1 Details
+		questionArray[0] = new Array();  //First Row
+		questionArray[0][0] = "1";  //Question ID
+		questionArray[0][1] = "c";  //Correct Answer
+		questionArray[0][2] = "multipleChoice";  // Question Type
+		questionArray[0][3] = "According to Acts 1:4, while Jesus was eating with the Apostles, what did Jesus command them to do?";  //Question
+		questionArray[0][4] = "To read the Scripture"; //Answer 1
+		questionArray[0][5] = "To repent of their sins";  //Answer 2
+		questionArray[0][6] = "To not leave Jerusalem";  //Answer 3
+		questionArray[0][7] = "To love one another";  //Answer 4
+		
+		//Enter Trivia Question #2 Details
+		questionArray[1] = new Array();  //First Row
+		questionArray[1][0] = "2";  //Question ID
+		questionArray[1][1] = "b";  //Correct Answer
+		questionArray[1][2] = "multipleChoice";  // Question Type
+		questionArray[1][3] = "What happened when Peter and John entered the temple courts with the man who was walking, jumping, and praising God? (3:8-10)";  //Question
+		questionArray[1][4] = "The temple guard flogged them for healing people on the Sabbath."; //Answer 1
+		questionArray[1][5] = "The people recognized him as the lame man and were filled with wonder and amazement.";  //Answer 2
+		questionArray[1][6] = "The Holy Spirit came with wind and fire.";  //Answer 3
+		questionArray[1][7] = "Other people who were sick came to Peter and John to be healed.";  //Answer 4
+		
+		//Enter Trivia Question #3 Details
+		questionArray[2] = new Array();  //First Row
+		questionArray[2][0] = "3";  //Question ID
+		questionArray[2][1] = "a";  //Correct Answer
+		questionArray[2][2] = "multipleChoice";  // Question Type
+		questionArray[2][3] = "When Peter and John were released, what happened after the people prayed? (4:31)";  //Question
+		questionArray[2][4] = "The place where they met was shaken and they were all filled with the Holy Spirit."; //Answer 1
+		questionArray[2][5] = "They decided on a safe place to hide from the temple guards.";  //Answer 2
+		questionArray[2][6] = "Peter and John left to go to the mountains to rest.";  //Answer 3
+		questionArray[2][7] = "Many became afraid and quit coming to the daily meetings.";  //Answer 4
+	
+		//Question Render
+		
+		//alert("The array length is " + questionArray.length);
+		
+		// create loop to produce questions
+		
+		for (a = 0; a < questionArray.length; a++)
+			{
+				renderQuestion(a);
+			}
+		
+		//Write questions to page
+		
+		function renderQuestion(i) 
+		{
+			//alert("This is the renderQuestion function.  The value of i = " + i);
+			var questionName = "question" + i;
+		
+		
+			document.write("<p>" + questionArray[i][3] +"</p>");
+			document.write("<input type='radio' id='" + 'a' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][4] + "'>" + questionArray[i][4] + "<br />");
+			document.write("<input type='radio' id='" + 'b' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][5] + "'>" + questionArray[i][5] + "<br />");
+			document.write("<input type='radio' id='" + 'c' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][6] + "'>" + questionArray[i][6] + "<br />");
+			document.write("<input type='radio' id='" + 'd' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][7] + "'>" + questionArray[i][7] + "<br />");
+		}
+		// Testing for correct answers
+		
+		function testAnswers ()
+		{
+			//alert("debug: testAnswer function: " + a);  //retrieves data from the function call
+			
+			var userSelected = "";  //initialize variable 
+			correct = 0;
+			incorrect = 0;
+			
+			for (i = 0; i < questionArray.length; i++)
+				{
+				
+				var correctAnswer = questionArray[i][1];  //Pulls the correct answer from the array to match to user's answer
+					alert("debug:  Correct answer for question " + questionArray[i][0] + " is " + correctAnswer);
+					
+				var myElement = "a" + (i+1);  //i+1 increments the array number by 1 to match the question number
+					//alert("debug: myElement = " + myElement);
+					
+				if(document.getElementById(myElement).checked == true)
+					{
+						userSelected = "a";
+					}
+				
+				var myElement = "b" + (i+1);
+					
+				if(document.getElementById(myElement).checked == true)
+					{
+						userSelected = "b";
+					}
+				
+				var myElement = "c" + (i+1);	
+				
+				if(document.getElementById(myElement).checked == true)
+					{
+						userSelected = "c";
+					}
+				
+				var myElement = "d" + (i+1);
+					
+				if(document.getElementById(myElement).checked == true)
+					{
+						userSelected = "d";
+					}
+					
+				alert("You selected " + userSelected);
+					
+				if(userSelected==correctAnswer)	
+					{
+						correct++;
+					}
+				else
+					{
+						incorrect++;
+						
+						//alert("Correct = " + correct);
+						//alert("Incorrect = " + incorrect);
+					}
+				
+		}
+			alert("Final Score \n Correct = " + correct + "\n Incorrect = " + incorrect);
+		}
+	</script>
+	</form>
+	
+	<input type="submit" onClick="return testAnswers()"/>
+		
+	<hr>
+	
+	<!-- <h3>Results</h3> -->
+	
+	<script language="javascript">
+		//Score Quiz
+		//Figure Percent
+		//Write to Page
+	</script>
+</body>
+</html>
