@@ -98,7 +98,7 @@
 				{
 				
 				var correctAnswer = questionArray[i][1];  //Pulls the correct answer from the array to match to user's answer
-					alert("debug:  Correct answer for question " + questionArray[i][0] + " is " + correctAnswer);
+					//alert("Correct answer for question " + questionArray[i][0] + " is " + correctAnswer);
 					
 				var myElement = "a" + (i+1);  //i+1 increments the array number by 1 to match the question number
 					//alert("debug: myElement = " + myElement);
@@ -129,7 +129,7 @@
 						userSelected = "d";
 					}
 					
-				alert("You selected " + userSelected);
+				alert("Correct answer for question " + questionArray[i][0] + " is " + correctAnswer + "\n You selected " + userSelected);
 					
 				if(userSelected==correctAnswer)	
 					{
