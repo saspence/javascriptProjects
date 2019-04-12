@@ -43,6 +43,7 @@
   questionArray[3][4] = "Simon";  //Optional Other Correct Answer
   questionArray[3][5] = "Peter";  //Optional Other Correct Answer
   questionArray[3][6] = "Simon Peter";  //Optional Other Correct Answer
+
   //Enter Trivia Question #5 Details
   questionArray[4] = new Array();
   questionArray[4][0] = "5";  //Question ID
@@ -66,9 +67,9 @@
   function renderQuestion(i)
   {
     //alert("This is the renderQuestion function.  The value of i = " + i);
-    var questionName = "question" + i;
+    var questionName = "question" + i;  //This variable is used to set the name of the radio buttons
 
-    if (questionArray[i][2] == "multipleChoice")
+    if (questionArray[i][2] == "multipleChoice")  //Determines if the question is multiple choice then writes the question to the page
     {
       document.write("<p>" + (i+1) + ". " + questionArray[i][3] +"</p>");
       document.write("<input type='radio' id='" + 'a' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][4] + "'>" + questionArray[i][4] + "<br />");
@@ -77,11 +78,11 @@
       document.write("<input type='radio' id='" + 'd' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][7] + "'>" + questionArray[i][7] + "<br />");
     }
 
-    if (questionArray[i][2] == "fillIn")
+    if (questionArray[i][2] == "fillIn")  //Determines if the question is a fill in the blank question then writes to the page
     {
       var fillInId = questionArray[i][2] + questionArray[i][0];
       document.write("<p>" + (i+1) + ". " + questionArray[i][3] +"</p>");
-      document.write("<input type='text' id='fillInId'/>");
+      document.write("<input type='text' id='" + questionArray[i][2] + questionArray[i][0] + "'/>");
     }
   }
   // Testing for correct answers
@@ -91,51 +92,51 @@
     //alert("debug: testAnswer function: " + a);  //retrieves data from the function call
 
     var userSelected = "";  //initialize variable
-    correct = 0;
-    incorrect = 0;
+    correct = 0;  //Starts the counter variable for correct answers
+    incorrect = 0;  //Starts the counter variable for incorrect answers
 
-    for (i = 0; i < questionArray.length; i++)
+    for (i = 0; i < questionArray.length; i++)  //Loop to check answers for each question
       {
-        if (questionArray[i][2] == "multipleChoice"){
+        if (questionArray[i][2] == "multipleChoice"){  //tests if the question is multiple choice
           var correctAnswer = questionArray[i][1];  //Pulls the correct answer from the array to match to user's answer
             //alert("Correct answer for question " + questionArray[i][0] + " is " + correctAnswer);
 
           var myElement = "a" + (i+1);  //i+1 increments the array number by 1 to match the question number
             //alert("debug: myElement = " + myElement);
 
-          if(document.getElementById(myElement).checked == true)
+          if(document.getElementById(myElement).checked == true)  //If this element is checked the user has selected a
             {
-              userSelected = "a";
+              userSelected = "a";  //Sets variable userSelected to a
             }
 
           var myElement = "b" + (i+1);
 
-          if(document.getElementById(myElement).checked == true)
+          if(document.getElementById(myElement).checked == true)  //If this element is checked the user has selected b
             {
-              userSelected = "b";
+              userSelected = "b";  //Sets variable userSelected to b
             }
 
           var myElement = "c" + (i+1);
 
-          if(document.getElementById(myElement).checked == true)
+          if(document.getElementById(myElement).checked == true)  //If this element is checked the user has selected c
             {
-              userSelected = "c";
+              userSelected = "c";  //Sets variable userSelected to c
             }
 
           var myElement = "d" + (i+1);
 
-          if(document.getElementById(myElement).checked == true)
+          if(document.getElementById(myElement).checked == true)  //If this element is checked the user has selected d
             {
-              userSelected = "d";
+              userSelected = "d";  //Sets variable userSelected to d
             }
 
-        if(userSelected==correctAnswer)
+        if(userSelected==correctAnswer)  //tests if userSelected is the same as the correct answer
           {
-            correct++;
+            correct++;  //Increments the correct count variable by 1
           }
-        else
+        else  //This executes if not the same as the correct answer
           {
-            incorrect++;
+            incorrect++;  //Increments the incorrect count variable by 1
 
             //alert("Correct = " + correct);
             //alert("Incorrect = " + incorrect);
@@ -143,26 +144,40 @@
 
       }
 
-        if (questionArray[i][2] == "fillIn"){
+        if (questionArray[i][2] == "fillIn"){  //Tests if the question is a fill in the blank question
 
-          var userEntry = questionArray[i][2] + questionArray[i][0];
-          var fillInText = document.getElementById("userEntry").value;
-          var answer1 = questionArray[i][1];
-          var answer2 = questionArray[i][4];
-          var answer3 = questionArray[i][5];
-          var answer4 = questionArray[i][6];
+          //This block of variables is created to pull in the information needed into variables before testing them
+          //This was used to debug problems in testing for the correct answer
+          var userEntry = questionArray[i][2] + questionArray[i][0];  //recreates id for text box
+          var fillInText = document.getElementById(userEntry).value.toLowerCase();  //gets the text entered into the text box and changes to lower case
+          var answer1 = questionArray[i][1].toLowerCase();  //grabs the first correct answer and changes to lower case
+          var answer2 = questionArray[i][4].toLowerCase();  //grabs the second correct answer and changes to lower case
+          var answer3 = questionArray[i][5].toLowerCase();  //grabs the third correct answer and changes to lower case
+          var answer4 = questionArray[i][6].toLowerCase();  //grabs the fourth correct answer and changes to lower case
 
-          if (fillInText === answer1 || answer2 || answer3 || answer4)
+          if (fillInText === answer1)  //Compares the user input against the first correct answer
           {
-            correct++;
+            correct++;  //If this answer matches then the correct count variable is incremented by 1
           }
-          else
+          else if (fillInText === answer2)  //Compares the user input against the second correct answer
+          {
+            correct++;  //If this answer matches then the correct count variable is incremented by 1
+          }
+          else if (fillInText === answer3) //Compares the user input against the third correct answer
+          {
+            correct++;  //If this answer matches then the correct count variable is incremented by 1
+          }
+          else if (fillInText === answer4) //Compares the user input against the fourth correct answer
+          {
+            correct++;  //If this answer matches then the correct count variable is incremented by 1
+          }
+          else  //If none of the above returns true then increment the incorrect counter variable by 1
           {
             incorrect++;
           }
         }
-    alert("Correct answer for question " + questionArray[i][0] + " is " + questionArray[i][1]);
+    alert("Correct answer for question " + questionArray[i][0] + " is " + questionArray[i][1]); //Alert box tells user the correct answer
   }
 
-    alert("Final Score \n Correct = " + correct + "\n Incorrect = " + incorrect);
+    alert("Final Score \n Correct = " + correct + "\n Incorrect = " + incorrect);  //alert box gives the final total of correct and incorrect
   }
