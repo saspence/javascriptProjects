@@ -1,3 +1,5 @@
+//Trivia Quizz Project by Angela Spencer
+
 //Name Variable and Set Variable as Array
   var questionArray = new Array();
 
@@ -54,6 +56,52 @@
   questionArray[4][5] = "Jesus";  //Optional Other Correct Answer
   questionArray[4][6] = "The Lord";  //Optional Other Correct Answer
 
+  questionArray[5] = new Array();  //First Row
+  questionArray[5][0] = "6";  //Question ID
+  questionArray[5][1] = "d";  //Correct Answer
+  questionArray[5][2] = "multipleChoice";  // Question Type
+  questionArray[5][3] = "What did the letter say Gentiles were to abstain from? (15:29)";  //Question
+  questionArray[5][4] = "\"From food sacrificed to idols, and from blood\""; //Answer 1
+  questionArray[5][5] = "\"From the meat of strangled animals\"";  //Answer 2
+  questionArray[5][6] = "\"From sexual immorality\"";  //Answer 3
+  questionArray[5][7] = "All of the above";  //Answer 4
+
+  questionArray[6] = new Array();  //First Row
+  questionArray[6][0] = "7";  //Question ID
+  questionArray[6][1] = "c";  //Correct Answer
+  questionArray[6][2] = "multipleChoice";  // Question Type
+  questionArray[6][3] = "How did Paul leave Antioch? (15:40-41)";  //Question
+  questionArray[6][4] = "In great anger"; //Answer 1
+  questionArray[6][5] = "By land and by sea";  //Answer 2
+  questionArray[6][6] = "Commended by the believers to the grace of the Lord";  //Answer 3
+  questionArray[6][7] = "All of the above";  //Answer 4
+
+  questionArray[7] = new Array();
+  questionArray[7][0] = "8";  //Question ID
+  questionArray[7][1] = "The Lord's disciples";  //Correct Answer
+  questionArray[7][2] = "fillIn"; //Question type
+  questionArray[7][3] = "Against whom was Saul breathing out murderous threats? (9:1)";//Question
+  questionArray[7][4] = "The disciples";  //Optional Other Correct Answer
+  questionArray[7][5] = "Disciples";  //Optional Other Correct Answer
+  questionArray[7][6] = "Lord's disciples";  //Optional Other Correct Answer
+
+  questionArray[8] = new Array();
+  questionArray[8][0] = "9";  //Question ID
+  questionArray[8][1] = "Three times";  //Correct Answer
+  questionArray[8][2] = "fillIn"; //Question type
+  questionArray[8][3] = "How many times did Peter see this vision? (10:16)";//Question
+  questionArray[8][4] = "3 times";  //Optional Other Correct Answer
+  questionArray[8][5] = "3";  //Optional Other Correct Answer
+  questionArray[8][6] = "Three";  //Optional Other Correct Answer
+
+  questionArray[9] = new Array();
+  questionArray[9][0] = "10";  //Question ID
+  questionArray[9][1] = "In the name of Jesus Christ";  //Correct Answer
+  questionArray[9][2] = "fillIn"; //Question type
+  questionArray[9][3] = "In whose name did Peter order that the Gentiles be baptized? (10:48)";//Question
+  questionArray[9][4] = "the name of Jesus Christ";  //Optional Other Correct Answer
+  questionArray[9][5] = "Jesus Christ";  //Optional Other Correct Answer
+  questionArray[9][6] = "Jesus";  //Optional Other Correct Answer
 
   //Question Render
 
@@ -61,28 +109,57 @@
 
   // create loop to produce questions
 
-
   //Write questions to page
 
   function renderQuestion(i)
   {
-    //alert("This is the renderQuestion function.  The value of i = " + i);
-    var questionName = "question" + i;  //This variable is used to set the name of the radio buttons
+    var a;
 
+    if (document.getElementById(question1).selected == true)
+      {
+        a = 1;
+      }
+
+    if (document.getElementById(question3).selected == true)
+      {
+        a = 3;
+      }
+
+    if (document.getElementById(question5).selected == true)
+    {
+      a = 5;
+    }
+
+    if (document.getElementById(question7).selected == true)
+    {
+      a = 7;
+    }
+
+    if (document.getElementById(question10).selected == true)
+    {
+      a = 10;
+    }
+
+    for (i = 0; i <= a; i++)
+
+    alert("This is the renderQuestion function.  The value of i = " + i);
+    var questionName = "question" + i;  //This variable is used to set the name of the radio buttons
+    var writeQuestion;
     if (questionArray[i][2] == "multipleChoice")  //Determines if the question is multiple choice then writes the question to the page
     {
-      document.write("<p>" + (i+1) + ". " + questionArray[i][3] +"</p>");
-      document.write("<input type='radio' id='" + 'a' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][4] + "'>" + questionArray[i][4] + "<br />");
-      document.write("<input type='radio' id='" + 'b' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][5] + "'>" + questionArray[i][5] + "<br />");
-      document.write("<input type='radio' id='" + 'c' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][6] + "'>" + questionArray[i][6] + "<br />");
-      document.write("<input type='radio' id='" + 'd' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][7] + "'>" + questionArray[i][7] + "<br />");
+      writeQuestion = "<p>" + (i+1) + ". " + questionArray[i][3] +"</p>";
+      writeQuestion = writeQuestion + "<input type='radio' id='" + 'a' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][4] + "'>" + questionArray[i][4] + "<br />";
+      writeQuestion = writeQuestion + "<input type='radio' id='" + 'b' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][5] + "'>" + questionArray[i][5] + "<br />";
+      writeQuestion = writeQuestion + "<input type='radio' id='" + 'c' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][6] + "'>" + questionArray[i][6] + "<br />";
+      writeQuestion = writeQuestion + "<input type='radio' id='" + 'd' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][7] + "'>" + questionArray[i][7] + "<br />";
+      document.getElementById("quizSpace").innerHTML = writeQuestion;
     }
 
     if (questionArray[i][2] == "fillIn")  //Determines if the question is a fill in the blank question then writes to the page
     {
       var fillInId = questionArray[i][2] + questionArray[i][0];
-      document.write("<p>" + (i+1) + ". " + questionArray[i][3] +"</p>");
-      document.write("<input type='text' id='" + questionArray[i][2] + questionArray[i][0] + "'/>");
+      document.getElementById("quizSpace").innerHTML = document.write("<p>" + (i+1) + ". " + questionArray[i][3] +"</p>");
+      document.getElementById("quizSpace").innerHTML = document.write("<input type='text' id='" + questionArray[i][2] + questionArray[i][0] + "'/>");
     }
   }
   // Testing for correct answers
@@ -95,7 +172,7 @@
     correct = 0;  //Starts the counter variable for correct answers
     incorrect = 0;  //Starts the counter variable for incorrect answers
 
-    for (i = 0; i < questionArray.length; i++)  //Loop to check answers for each question
+    for (i = 0; i <= manyQuestions; i++)  //Loop to check answers for each question
       {
         if (questionArray[i][2] == "multipleChoice"){  //tests if the question is multiple choice
           var correctAnswer = questionArray[i][1];  //Pulls the correct answer from the array to match to user's answer

@@ -1,3 +1,5 @@
+<!-- Trivia Quiz Project by Angela Spencer -->
+
 <!doctype html>
 <html>
 <head>
@@ -15,21 +17,44 @@
 	<!-- Set Up -->
 	<!--<p>Level</p>  radio buttons -->
 	<!--<p>How many questions?</p>  text box -->
+<!-- <form> -->
+
+
+	<p>
+			How many questions would you like?
+	</p>
+	<select id="manyQuestions">
+		<option id="question1">1</option>
+		<option id="question3">3</option>
+		<option id="question5">5</option>
+		<option id="question7">7</option>
+		<option id="question10" selected>10</option>
+	</select>
+	<br />
+<!--		<p>
+			How much time would you like?
+		</p>
+
+		<select name="manyTime">
+			<option value="timeNoLimit">No Limit</option>
+			<option value="time1">1 minute</option>
+			<option value="time3">3 minutes</option>
+			<option value="time5">5 minutes</option>
+			<option value="time10">10 minutes</option>
+		</select>  -->
+	<br />
+	<br />
+	<input type="submit" onClick="renderQuestion()"/>
+<!-- </form> -->
 	<!-- <p>Timer</p> radio buttons -->
 	<!-- text box  <p>Length of Time</p> -->
 	<!-- Button -->
 
 	<!-- <hr> -->
-
+<hr />
 <div id="quizSpace">
-	<script language="javascript">
-		for (a = 0; a < questionArray.length; a++)
-			{
-				renderQuestion(a);
-			}
-	</script>
-</br>
-</br>
+
+
 </div>
 <input type="submit" onClick="return testAnswers()"/>
 
