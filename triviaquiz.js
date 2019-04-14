@@ -110,56 +110,35 @@
   // create loop to produce questions
 
   //Write questions to page
+  var manyQuestions;
 
   function renderQuestion(i)
   {
-    var a;
+    var comboBox = document.getElementById("manyQuestions");
+    var questionCount = comboBox.selectedOptions[0];
+    manyQuestions = parseInt(questionCount.value);
+    var writeQuestion = "";
+    for (i = 0; i < manyQuestions; i++){
 
-    if (document.getElementById(question1).selected == true)
-      {
-        a = 1;
-      }
-
-    if (document.getElementById(question3).selected == true)
-      {
-        a = 3;
-      }
-
-    if (document.getElementById(question5).selected == true)
-    {
-      a = 5;
-    }
-
-    if (document.getElementById(question7).selected == true)
-    {
-      a = 7;
-    }
-
-    if (document.getElementById(question10).selected == true)
-    {
-      a = 10;
-    }
-
-    for (i = 0; i <= a; i++)
-
-    alert("This is the renderQuestion function.  The value of i = " + i);
+    //alert("This is the renderQuestion function.  The value of i = " + i);
     var questionName = "question" + i;  //This variable is used to set the name of the radio buttons
-    var writeQuestion;
+
     if (questionArray[i][2] == "multipleChoice")  //Determines if the question is multiple choice then writes the question to the page
     {
-      writeQuestion = "<p>" + (i+1) + ". " + questionArray[i][3] +"</p>";
-      writeQuestion = writeQuestion + "<input type='radio' id='" + 'a' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][4] + "'>" + questionArray[i][4] + "<br />";
-      writeQuestion = writeQuestion + "<input type='radio' id='" + 'b' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][5] + "'>" + questionArray[i][5] + "<br />";
-      writeQuestion = writeQuestion + "<input type='radio' id='" + 'c' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][6] + "'>" + questionArray[i][6] + "<br />";
-      writeQuestion = writeQuestion + "<input type='radio' id='" + 'd' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][7] + "'>" + questionArray[i][7] + "<br />";
-      document.getElementById("quizSpace").innerHTML = writeQuestion;
+      writeQuestion += "<p>" + (i+1) + ". " + questionArray[i][3] +"</p>";
+      writeQuestion += "<input type='radio' id='" + 'a' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][4] + "'>" + questionArray[i][4] + "<br />";
+      writeQuestion += "<input type='radio' id='" + 'b' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][5] + "'>" + questionArray[i][5] + "<br />";
+      writeQuestion += "<input type='radio' id='" + 'c' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][6] + "'>" + questionArray[i][6] + "<br />";
+      writeQuestion += "<input type='radio' id='" + 'd' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][7] + "'>" + questionArray[i][7] + "<br />";
     }
 
     if (questionArray[i][2] == "fillIn")  //Determines if the question is a fill in the blank question then writes to the page
     {
       var fillInId = questionArray[i][2] + questionArray[i][0];
-      document.getElementById("quizSpace").innerHTML = document.write("<p>" + (i+1) + ". " + questionArray[i][3] +"</p>");
-      document.getElementById("quizSpace").innerHTML = document.write("<input type='text' id='" + questionArray[i][2] + questionArray[i][0] + "'/>");
+      writeQuestion += "<p>" + (i+1) + ". " + questionArray[i][3] +"</p>";
+      writeQuestion += "<input type='text' id='" + questionArray[i][2] + questionArray[i][0] + "'/>";
+    }
+    document.getElementById("quizSpace").innerHTML = writeQuestion;
     }
   }
   // Testing for correct answers
@@ -172,7 +151,7 @@
     correct = 0;  //Starts the counter variable for correct answers
     incorrect = 0;  //Starts the counter variable for incorrect answers
 
-    for (i = 0; i <= manyQuestions; i++)  //Loop to check answers for each question
+    for (i = 0; i < manyQuestions; i++)  //Loop to check answers for each question
       {
         if (questionArray[i][2] == "multipleChoice"){  //tests if the question is multiple choice
           var correctAnswer = questionArray[i][1];  //Pulls the correct answer from the array to match to user's answer
