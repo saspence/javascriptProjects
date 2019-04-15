@@ -110,14 +110,21 @@
   // create loop to produce questions
 
   //Write questions to page
+  //Create global variable that stores the number of questions selected to be used in renderQuestion and testAnswer
   var manyQuestions;
 
+  //function to write questions to the page
   function renderQuestion(i)
   {
+    //Variable created to access the select boxes for the number of questions
     var comboBox = document.getElementById("manyQuestions");
+    // The selected option is stored in selectedOptions array at position [0]
     var questionCount = comboBox.selectedOptions[0];
+    //Sets global manyQuestions variable to an integer of the value of the selected option
     manyQuestions = parseInt(questionCount.value);
+    //Set variable that will hold the questions as they are created so it can be printed to the page on completion
     var writeQuestion = "";
+    //Create loop to produce questions
     for (i = 0; i < manyQuestions; i++){
 
     //alert("This is the renderQuestion function.  The value of i = " + i);
@@ -141,10 +148,42 @@
     document.getElementById("quizSpace").innerHTML = writeQuestion;
     }
   }
+
+var timerID;
+//Set Timer function
+function timerDelay(){
+  var comboBox = document.getElementById("manyTime");
+  var timeCount = comboBox.selectedOptions[0];
+  timeCount = parseInt(timeCount.value);
+
+//  if (isNan(timeCount)){
+//    return;
+//  }
+
+//  else {
+    var timerLength;
+
+  timerLength = timeCount * 60 * 1000;
+
+  timerID = setTimeout(testAnswers, timerLength);
+
+  if (isNaN(timerLength)){
+    clearTimeout(timerID);
+   }
+//  }
+}
+
+//function to call onclick of submit button to render questions and set timerID
+function startQuiz(){
+  renderQuestion();
+  timerDelay();
+}
+
   // Testing for correct answers
 
   function testAnswers ()
   {
+    clearTimeout(timerID);
     //alert("debug: testAnswer function: " + a);  //retrieves data from the function call
 
     var userSelected = "";  //initialize variable

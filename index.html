@@ -14,12 +14,7 @@
 	<h2>Book of Acts</h2>
 	<hr>
 
-	<!-- Set Up -->
-	<!--<p>Level</p>  radio buttons -->
-	<!--<p>How many questions?</p>  text box -->
-<!-- <form> -->
-
-
+	<!-- Choose number of questions -->
 	<p>
 			How many questions would you like?
 	</p>
@@ -31,26 +26,24 @@
 		<option id="question10" selected>10</option>
 	</select>
 	<br />
-<!--		<p>
+
+	<!-- Choose length of time -->
+	<p>
 			How much time would you like?
-		</p>
+	</p>
 
-		<select name="manyTime">
-			<option value="timeNoLimit">No Limit</option>
-			<option value="time1">1 minute</option>
-			<option value="time3">3 minutes</option>
-			<option value="time5">5 minutes</option>
-			<option value="time10">10 minutes</option>
-		</select>  -->
+		<select id="manyTime">
+			<option id="timeNoLimit" >No Limit</option>
+			<option id="time1" >1 minute</option>
+			<option id="time3" >3 minutes</option>
+			<option id="time5" >5 minutes</option>
+			<option id="time10" >10 minutes</option>
+		</select>
 	<br />
 	<br />
-	<input type="submit" onClick="renderQuestion()"/>
-<!-- </form> -->
-	<!-- <p>Timer</p> radio buttons -->
-	<!-- text box  <p>Length of Time</p> -->
-	<!-- Button -->
+	<!-- Submit Button -->
+	<input type="submit" onClick="startQuiz()"/>
 
-	<!-- <hr> -->
 <hr />
 <div id="quizSpace">
 
