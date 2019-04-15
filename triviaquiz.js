@@ -105,11 +105,12 @@
 
   //Question Render
 
-  //alert("The array length is " + questionArray.length);
+  //function to call onclick of submit button to render questions and set timerID
+  function startQuiz(){
+    renderQuestion();
+    timerDelay();
+  }
 
-  // create loop to produce questions
-
-  //Write questions to page
   //Create global variable that stores the number of questions selected to be used in renderQuestion and testAnswer
   var manyQuestions;
 
@@ -149,37 +150,36 @@
     }
   }
 
+//Global variable declared to house the timer to be available for timerDelay and testAnswers
 var timerID;
 //Set Timer function
 function timerDelay(){
+//Variable created to access the select boxes for the timer length
   var comboBox = document.getElementById("manyTime");
+// The selected option is stored in selectedOptions array at position [0]
   var timeCount = comboBox.selectedOptions[0];
+//Sets global timeCount variable to an integer of the value of the selected option
   timeCount = parseInt(timeCount.value);
 
-//  if (isNan(timeCount)){
-//    return;
-//  }
-
-//  else {
-    var timerLength;
-
+//Declare variable to hold the timer length in milliseconds
+  var timerLength;
+//Timer length calculated for the value in timeCount
   timerLength = timeCount * 60 * 1000;
-
-  timerID = setTimeout(testAnswers, timerLength);
-
+//timerID is set as timer, performing the timerOver function at the time set by timerLength
+  timerID = setTimeout(timerOver, timerLength);
+//The No Limit option will return as NaN.  This if statement cancels the timer when No Limit is selected
   if (isNaN(timerLength)){
     clearTimeout(timerID);
    }
 //  }
 }
 
-//function to call onclick of submit button to render questions and set timerID
-function startQuiz(){
-  renderQuestion();
-  timerDelay();
+function timerOver() {
+  alert("Time is up");
+  testAnswers();
 }
 
-  // Testing for correct answers
+// Testing for correct answers
 
   function testAnswers ()
   {
