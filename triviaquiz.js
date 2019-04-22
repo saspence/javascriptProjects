@@ -1,3 +1,5 @@
+//Trivia Quizz Project by Angela Spencer
+
 //Name Variable and Set Variable as Array
   var questionArray = new Array();
 
@@ -54,48 +56,143 @@
   questionArray[4][5] = "Jesus";  //Optional Other Correct Answer
   questionArray[4][6] = "The Lord";  //Optional Other Correct Answer
 
+  questionArray[5] = new Array();  //First Row
+  questionArray[5][0] = "6";  //Question ID
+  questionArray[5][1] = "d";  //Correct Answer
+  questionArray[5][2] = "multipleChoice";  // Question Type
+  questionArray[5][3] = "What did the letter say Gentiles were to abstain from? (15:29)";  //Question
+  questionArray[5][4] = "\"From food sacrificed to idols, and from blood\""; //Answer 1
+  questionArray[5][5] = "\"From the meat of strangled animals\"";  //Answer 2
+  questionArray[5][6] = "\"From sexual immorality\"";  //Answer 3
+  questionArray[5][7] = "All of the above";  //Answer 4
+
+  questionArray[6] = new Array();  //First Row
+  questionArray[6][0] = "7";  //Question ID
+  questionArray[6][1] = "c";  //Correct Answer
+  questionArray[6][2] = "multipleChoice";  // Question Type
+  questionArray[6][3] = "How did Paul leave Antioch? (15:40-41)";  //Question
+  questionArray[6][4] = "In great anger"; //Answer 1
+  questionArray[6][5] = "By land and by sea";  //Answer 2
+  questionArray[6][6] = "Commended by the believers to the grace of the Lord";  //Answer 3
+  questionArray[6][7] = "All of the above";  //Answer 4
+
+  questionArray[7] = new Array();
+  questionArray[7][0] = "8";  //Question ID
+  questionArray[7][1] = "The Lord's disciples";  //Correct Answer
+  questionArray[7][2] = "fillIn"; //Question type
+  questionArray[7][3] = "Against whom was Saul breathing out murderous threats? (9:1)";//Question
+  questionArray[7][4] = "The disciples";  //Optional Other Correct Answer
+  questionArray[7][5] = "Disciples";  //Optional Other Correct Answer
+  questionArray[7][6] = "Lord's disciples";  //Optional Other Correct Answer
+
+  questionArray[8] = new Array();
+  questionArray[8][0] = "9";  //Question ID
+  questionArray[8][1] = "Three times";  //Correct Answer
+  questionArray[8][2] = "fillIn"; //Question type
+  questionArray[8][3] = "How many times did Peter see this vision? (10:16)";//Question
+  questionArray[8][4] = "3 times";  //Optional Other Correct Answer
+  questionArray[8][5] = "3";  //Optional Other Correct Answer
+  questionArray[8][6] = "Three";  //Optional Other Correct Answer
+
+  questionArray[9] = new Array();
+  questionArray[9][0] = "10";  //Question ID
+  questionArray[9][1] = "In the name of Jesus Christ";  //Correct Answer
+  questionArray[9][2] = "fillIn"; //Question type
+  questionArray[9][3] = "In whose name did Peter order that the Gentiles be baptized? (10:48)";//Question
+  questionArray[9][4] = "the name of Jesus Christ";  //Optional Other Correct Answer
+  questionArray[9][5] = "Jesus Christ";  //Optional Other Correct Answer
+  questionArray[9][6] = "Jesus";  //Optional Other Correct Answer
 
   //Question Render
 
-  //alert("The array length is " + questionArray.length);
+  //function to call onclick of submit button to render questions and set timerID
+  function startQuiz(){
+    renderQuestion();
+    timerDelay();
+  }
 
-  // create loop to produce questions
+  //Create global variable that stores the number of questions selected to be used in renderQuestion and testAnswer
+  var manyQuestions;
 
-
-  //Write questions to page
-
+  //function to write questions to the page
   function renderQuestion(i)
   {
+    //Variable created to access the select boxes for the number of questions
+    var comboBox = document.getElementById("manyQuestions");
+
+    // The selected option is stored in selectedOptions array at position [0]
+    var questionCount = comboBox.selectedOptions[0];
+
+    //Sets global manyQuestions variable to an integer of the value of the selected option
+    manyQuestions = parseInt(questionCount.value);
+    //Set variable that will hold the questions as they are created so it can be printed to the page on completion
+    var writeQuestion = "";
+    //Create loop to produce questions
+    for (i = 0; i < manyQuestions; i++){
+
     //alert("This is the renderQuestion function.  The value of i = " + i);
     var questionName = "question" + i;  //This variable is used to set the name of the radio buttons
 
     if (questionArray[i][2] == "multipleChoice")  //Determines if the question is multiple choice then writes the question to the page
     {
-      document.write("<p>" + (i+1) + ". " + questionArray[i][3] +"</p>");
-      document.write("<input type='radio' id='" + 'a' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][4] + "'>" + questionArray[i][4] + "<br />");
-      document.write("<input type='radio' id='" + 'b' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][5] + "'>" + questionArray[i][5] + "<br />");
-      document.write("<input type='radio' id='" + 'c' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][6] + "'>" + questionArray[i][6] + "<br />");
-      document.write("<input type='radio' id='" + 'd' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][7] + "'>" + questionArray[i][7] + "<br />");
+      writeQuestion += "<p>" + (i+1) + ". " + questionArray[i][3] +"</p>";
+      writeQuestion += "<input type='radio' id='" + 'a' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][4] + "'>" + questionArray[i][4] + "<br />";
+      writeQuestion += "<input type='radio' id='" + 'b' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][5] + "'>" + questionArray[i][5] + "<br />";
+      writeQuestion += "<input type='radio' id='" + 'c' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][6] + "'>" + questionArray[i][6] + "<br />";
+      writeQuestion += "<input type='radio' id='" + 'd' + questionArray[i][0] + "' + name='" + questionName + "' value='" + questionArray[i][7] + "'>" + questionArray[i][7] + "<br />";
     }
 
     if (questionArray[i][2] == "fillIn")  //Determines if the question is a fill in the blank question then writes to the page
     {
       var fillInId = questionArray[i][2] + questionArray[i][0];
-      document.write("<p>" + (i+1) + ". " + questionArray[i][3] +"</p>");
-      document.write("<input type='text' id='" + questionArray[i][2] + questionArray[i][0] + "'/>");
+      writeQuestion += "<p>" + (i+1) + ". " + questionArray[i][3] +"</p>";
+      writeQuestion += "<input type='text' id='" + questionArray[i][2] + questionArray[i][0] + "'/>";
+    }
+    document.getElementById("quizSpace").innerHTML = writeQuestion;
     }
   }
-  // Testing for correct answers
+
+//Global variable declared to house the timer to be available for timerDelay and testAnswers
+var timerID;
+//Set Timer function
+function timerDelay(){
+//Variable created to access the select boxes for the timer length
+  var comboBox = document.getElementById("manyTime");
+// The selected option is stored in selectedOptions array at position [0]
+  var timeCount = comboBox.selectedOptions[0];
+//Sets global timeCount variable to an integer of the value of the selected option
+  timeCount = parseInt(timeCount.value);
+
+//Declare variable to hold the timer length in milliseconds
+  var timerLength;
+//Timer length calculated for the value in timeCount
+  timerLength = timeCount * 60 * 1000;
+//timerID is set as timer, performing the timerOver function at the time set by timerLength
+  timerID = setTimeout(timerOver, timerLength);
+//The No Limit option will return as NaN.  This if statement cancels the timer when No Limit is selected
+  if (isNaN(timerLength)){
+    clearTimeout(timerID);
+   }
+//  }
+}
+
+function timerOver() {
+  alert("Time is up");
+  testAnswers();
+}
+
+// Testing for correct answers
 
   function testAnswers ()
   {
+    clearTimeout(timerID);
     //alert("debug: testAnswer function: " + a);  //retrieves data from the function call
 
     var userSelected = "";  //initialize variable
     correct = 0;  //Starts the counter variable for correct answers
     incorrect = 0;  //Starts the counter variable for incorrect answers
 
-    for (i = 0; i < questionArray.length; i++)  //Loop to check answers for each question
+    for (i = 0; i < manyQuestions; i++)  //Loop to check answers for each question
       {
         if (questionArray[i][2] == "multipleChoice"){  //tests if the question is multiple choice
           var correctAnswer = questionArray[i][1];  //Pulls the correct answer from the array to match to user's answer

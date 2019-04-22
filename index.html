@@ -1,3 +1,5 @@
+<!-- Trivia Quiz Project by Angela Spencer -->
+
 <!doctype html>
 <html>
 <head>
@@ -12,24 +14,40 @@
 	<h2>Book of Acts</h2>
 	<hr>
 
-	<!-- Set Up -->
-	<!--<p>Level</p>  radio buttons -->
-	<!--<p>How many questions?</p>  text box -->
-	<!-- <p>Timer</p> radio buttons -->
-	<!-- text box  <p>Length of Time</p> -->
-	<!-- Button -->
+	<!-- Choose number of questions -->
+	<p>
+			How many questions would you like?
+	</p>
+	<select id="manyQuestions">
+		<option id="question1">1</option>
+		<option id="question3">3</option>
+		<option id="question5">5</option>
+		<option id="question7">7</option>
+		<option id="question10">10</option>
+	</select>
+	<br />
 
-	<!-- <hr> -->
+	<!-- Choose length of time -->
+	<p>
+			How much time would you like?
+	</p>
 
+		<select id="manyTime">
+			<option id="timeNoLimit" >No Limit</option>
+			<option id="time1" >1 minute</option>
+			<option id="time3" >3 minutes</option>
+			<option id="time5" >5 minutes</option>
+			<option id="time10" >10 minutes</option>
+		</select>
+	<br />
+	<br />
+	<!-- Submit Button -->
+	<input type="submit" onClick="startQuiz()"/>
+
+<hr />
 <div id="quizSpace">
-	<script language="javascript">
-		for (a = 0; a < questionArray.length; a++)
-			{
-				renderQuestion(a);
-			}
-	</script>
-</br>
-</br>
+
+
 </div>
 <input type="submit" onClick="return testAnswers()"/>
 
