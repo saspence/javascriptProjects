@@ -119,8 +119,10 @@
   {
     //Variable created to access the select boxes for the number of questions
     var comboBox = document.getElementById("manyQuestions");
+
     // The selected option is stored in selectedOptions array at position [0]
     var questionCount = comboBox.selectedOptions[0];
+
     //Sets global manyQuestions variable to an integer of the value of the selected option
     manyQuestions = parseInt(questionCount.value);
     //Set variable that will hold the questions as they are created so it can be printed to the page on completion
