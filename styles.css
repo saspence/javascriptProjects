@@ -1,0 +1,30 @@
+img {
+  float: left;
+}
+
+h1 {
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  color: #43D993;
+}
+
+h2 {
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  color: #6C7DD9;
+}
+
+#header {
+  /* background-image: url("glitter.jpg"); */
+  margin: 0;
+  padding: 0;
+}
+
+#answerButton {
+  display: none;
+}
+
+body {
+  background-color: #EDEFEE;
+  margin: 10px;
+}
