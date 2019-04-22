@@ -1,4 +1,4 @@
-//Trivia Quizz Project by Angela Spencer
+//Trivia Quiz Project by Angela Spencer
 
 //Name Variable and Set Variable as Array
   var questionArray = new Array();
@@ -146,7 +146,9 @@
       writeQuestion += "<p>" + (i+1) + ". " + questionArray[i][3] +"</p>";
       writeQuestion += "<input type='text' id='" + questionArray[i][2] + questionArray[i][0] + "'/>";
     }
+  //  writeQuestion += "<input type="submit" onClick="return testAnswers()"/>";
     document.getElementById("quizSpace").innerHTML = writeQuestion;
+    document.getElementById("answerButton").style.display = "block";
     }
   }
 
@@ -180,7 +182,7 @@ function timerOver() {
 }
 
 // Testing for correct answers
-
+var answerKey = "";
   function testAnswers ()
   {
     clearTimeout(timerID);
@@ -271,8 +273,66 @@ function timerOver() {
             incorrect++;
           }
         }
-    alert("Correct answer for question " + questionArray[i][0] + " is " + questionArray[i][1]); //Alert box tells user the correct answer
+
+    answerKey += "Correct answer for question " + questionArray[i][0] + " is " + questionArray[i][1] + "<br/>"; //Alert box tells user the correct answer
   }
 
-    alert("Final Score \n Correct = " + correct + "\n Incorrect = " + incorrect);  //alert box gives the final total of correct and incorrect
+  var percentScore = ((correct/(correct +incorrect))*100).toFixed(2);
+  var finalScore = "Your Final Score is " +  percentScore + "% <br/> Correct = " + correct + "<br/> Incorrect = " + incorrect + "<br/><br/>";  //alert box gives the final total of correct and incorrect
+  // document.getElementById("showResults").innerHTML = finalScore + answerKey;
+
+
+
+// Figure average score
+  var totalCorrect = Math.floor(getCookieValue("totalCorrect"));
+  var totalQuestions = Math.floor(getCookieValue("totalQuestions"));
+  totalCorrect = totalCorrect + correct;
+  totalQuestions = totalQuestions + manyQuestions;
+  totalScore = ((totalCorrect / totalQuestions)*100).toFixed(2);
+  var avgScore = "Your Average Score is " +  totalScore + "%";  //alert box gives the average score of all quizzes completed
+  document.getElementById("showResults").innerHTML = finalScore + answerKey + "<br/>" + avgScore;
+  // Setting new cookie value and expiration date
+  var expireDate = new Date ();
+  expireDate.setMonth(expireDate.getMonth() + 6);
+
+  setCookie("totalCorrect", totalCorrect, expireDate);
+  setCookie("totalQuestions", totalQuestions, expireDate);
+
+  }
+
+  function getCookieValue(cookieName)
+  {
+      var cookieValue = document.cookie;
+      var cookieStartsAt = cookieValue.indexOf("" + cookieName + "=");
+      if (cookieStartsAt == -1)
+        {
+          cookieStartsAt = cookieValue.indexOf(cookieName + "=");
+        }
+      if (cookieStartsAt == -1)
+      {
+        cookieValue = null;
+      }
+      else
+      {
+        cookieStartsAt = cookieValue.indexOf("=", cookieStartsAt) + 1;
+        var cookieEndsAt = cookieValue.indexOf(";", cookieStartsAt);
+        if (cookieEndsAt == -1)
+        {
+          cookieEndsAt = cookieValue.length;
+        }
+        cookieValue = unescape(cookieValue.substring(cookieStartsAt, cookieEndsAt));
+      }
+        return cookieValue;
+  }
+
+  function setCookie(cookieName, cookieValue, cookieExpires)
+  {
+    cookieValue = escape(cookieValue);
+    if (cookieExpires == "")
+    {
+      var nowDate = new Date();
+      nowDate.setMonth(nowDate.getMonth() + 6);
+      cookieExpires = nowDate.toGMTString();
+    }
+    document.cookie = cookieName + "=" + cookieValue + ";expires=" + cookieExpires;
   }
